@@ -1,4 +1,4 @@
-name: dice_state_flutter
+name: ex03_magic_ball_8
 description: A new Flutter project.
 
 version: 1.0.0+1
@@ -17,6 +17,7 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+  
   uses-material-design: true
 
   assets:
