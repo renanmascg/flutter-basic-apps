@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzler_app_flutter/quizBrain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizBrain quizBrain = QuizBrain();
 
@@ -40,7 +41,7 @@ class _QuizPageState extends State<QuizPage> {
       } else {
         scoreKeeper.add(Icon(Icons.close, color: Colors.red,)); 
       }
-           
+
       quizBrain.nextQuestion();
     });
   }
