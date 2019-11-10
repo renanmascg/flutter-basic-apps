@@ -1,4 +1,7 @@
+import 'package:ex04_destini_game_app/storyBrain.dart';
 import 'package:flutter/material.dart';
+
+StoryBrain storyBrain = StoryBrain();
 
 void main() => runApp(Destini());
 
@@ -32,33 +35,47 @@ class _StoryPageState extends State<StoryPage> {
         ),
         child: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Text(
-                'Story text will go here.',
-                style: TextStyle(
-                  fontSize: 25.0,
+              Expanded(
+                flex: 12,
+                child: Text(
+                  storyBrain.getStory(),
+                  style: TextStyle(
+                    fontSize: 25.0,
+                  ),
                 ),
               ),
-              FlatButton(
-                onPressed: () {},
-                color: Colors.red,
-                child: Text(
-                  'Choice 1',
-                  style: TextStyle(
-                    fontSize: 20.0
+              Expanded(
+                flex: 2,
+                child: FlatButton(
+                  onPressed: () {
+                    storyBrain.nextStory(1);
+                  },
+                  color: Colors.red,
+                  child: Text(
+                    storyBrain.getChoice1(),
+                    style: TextStyle(
+                      fontSize: 20.0
+                    ),
                   ),
                 ),
               ),
               SizedBox(
                 height: 20.0,
               ),
-              FlatButton(
-                onPressed: () {},
-                color: Colors.blue,
-                child: Text(
-                  'Choice 2',
-                  style: TextStyle(
-                    fontSize: 20.0
+              Expanded(
+                flex: 2,
+                child: FlatButton(
+                  onPressed: () {
+                    storyBrain.nextStory(2);
+                  },
+                  color: Colors.blue,
+                  child: Text(
+                    storyBrain.getChoice2(),
+                    style: TextStyle(
+                      fontSize: 20.0
+                    ),
                   ),
                 ),
               ),
