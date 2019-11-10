@@ -47,7 +47,7 @@ class QuizBrain {
   }
 
   bool isFinished() {
-    if(_questionNumber == _questionBank.length -1) {
+    if(_questionNumber >= _questionBank.length -1) {
       return true;
     } else {
       return false;
@@ -57,5 +57,5 @@ class QuizBrain {
   void reset() {
     _questionNumber = 0;
   }
-  
+
 }

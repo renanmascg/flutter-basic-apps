@@ -33,17 +33,43 @@ class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
   void checkAnswer(bool userPickedAnswer) {
-    bool correctAnswer = quizBrain.getQuestionAnswer();
 
     setState(() {
-      if (correctAnswer == userPickedAnswer) {
-        scoreKeeper.add(Icon(Icons.check, color: Colors.green,)); 
-      } else {
-        scoreKeeper.add(Icon(Icons.close, color: Colors.red,)); 
-      }
+      if (quizBrain.isFinished()) {
+        Alert(
+          context: context,
+          type: AlertType.success,
+          title: "Parabéns!",
+          desc: "Seu quiz acabou !! Toque no botao para recomeçar",
+          buttons: [
+            DialogButton(
+              child: Text(
+                "Restart",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () => Navigator.pop(context),
+              width: 120,
+            )
+          ],
+        ).show();
 
-      quizBrain.nextQuestion();
+        quizBrain.reset();
+        
+        scoreKeeper.clear();
+
+      } else {
+        bool correctAnswer = quizBrain.getQuestionAnswer();
+
+        if (correctAnswer == userPickedAnswer) {
+          scoreKeeper.add(Icon(Icons.check, color: Colors.green,)); 
+        } else {
+          scoreKeeper.add(Icon(Icons.close, color: Colors.red,)); 
+        }
+
+        quizBrain.nextQuestion();
+      }
     });
+
   }
 
   @override
