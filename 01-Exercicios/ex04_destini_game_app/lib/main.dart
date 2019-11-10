@@ -22,6 +22,8 @@ class _StoryPageState extends State<StoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
+        constraints: BoxConstraints.expand(),
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/background.png'),
@@ -29,7 +31,38 @@ class _StoryPageState extends State<StoryPage> {
           ),
         ),
         child: SafeArea(
-          child: Container(
+          child: Column(
+            children: <Widget>[
+              Text(
+                'Story text will go here.',
+                style: TextStyle(
+                  fontSize: 25.0,
+                ),
+              ),
+              FlatButton(
+                onPressed: () {},
+                color: Colors.red,
+                child: Text(
+                  'Choice 1',
+                  style: TextStyle(
+                    fontSize: 20.0
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              FlatButton(
+                onPressed: () {},
+                color: Colors.blue,
+                child: Text(
+                  'Choice 2',
+                  style: TextStyle(
+                    fontSize: 20.0
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
