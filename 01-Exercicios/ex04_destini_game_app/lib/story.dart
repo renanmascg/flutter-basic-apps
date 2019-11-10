@@ -6,6 +6,4 @@ class Story {
 
   Story({ this.storyTitle, this.choice1, this.choice2});
 
-  
-
 }

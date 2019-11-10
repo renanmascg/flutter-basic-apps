@@ -2,7 +2,7 @@ import 'package:ex04_destini_game_app/story.dart';
 
 class StoryBrain {
 
-  int storyNumber = 0;
+  int _storyNumber = 0;
 
   List<Story> _storyData = [
     Story(
@@ -37,19 +37,52 @@ class StoryBrain {
   ];
 
   void nextStory(int choiceNumber) {
-    print('choce by the user: $choiceNumber');
+    if (_storyNumber == 0) {
+      if (choiceNumber == 1) {
+        _storyNumber = 2;
+      } else {
+        _storyNumber = 1;
+      }
+    } else if (_storyNumber == 1) {
+      
+      if (choiceNumber == 1) {
+        _storyNumber = 2;
+      } else {
+        _storyNumber = 3;
+      }
+    } else if (_storyNumber == 2) {
+      if (choiceNumber == 1) {
+        _storyNumber = 5;
+      } else {
+        _storyNumber = 4;
+      }
+    } else if (_storyNumber == 3 || _storyNumber == 4 || _storyNumber == 5) {
+      restart();
+    }
   }
 
   String getStory() {
-    return _storyData[0].storyTitle;
+    return _storyData[_storyNumber].storyTitle;
   }
 
   String getChoice1() {
-    return _storyData[0].choice1;
+    return _storyData[_storyNumber].choice1;
   }
 
   String getChoice2() {
-    return _storyData[0].choice2;
+    return _storyData[_storyNumber].choice2;
+  }
+
+  void restart() {
+    _storyNumber = 0;
+  }
+
+  bool buttonShouldBeVisible() {
+    if ( _storyNumber == 0 || _storyNumber == 1 || _storyNumber == 2 ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }
