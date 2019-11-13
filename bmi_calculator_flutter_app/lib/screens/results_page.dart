@@ -18,7 +18,8 @@ class ResultsPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(15.0),
+            alignment: Alignment.bottomLeft,
             child: Text(
               'Your Results',
               style: kTitleTextStyle,
