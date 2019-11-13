@@ -1,3 +1,5 @@
+import 'package:ex05_bmi_calculator_renan/components/icon_named_button.dart';
+import 'package:ex05_bmi_calculator_renan/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -17,8 +19,8 @@ class _InputInfoPageState extends State<InputInfoPage> {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Color(0xFF58AEC6),
-                Color(0xFF9CE2D6)
+                kDegradeInitialColor,
+                kDegradeEndColor
               ]
             )
           ),
@@ -26,15 +28,12 @@ class _InputInfoPageState extends State<InputInfoPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Expanded(
-                child: Text(
-                  'BMI Calculator',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Poppins',
-                    fontSize: 30.0,
+                child: Center(
+                  child: Text(
+                    'BMI Calculator',
+                    style: kTitleTextStyle,
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
               Expanded(
@@ -46,11 +45,7 @@ class _InputInfoPageState extends State<InputInfoPage> {
                     children: <Widget>[
                       Text(
                         'Gender',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold
-                        ),
+                        style: kCardTitleTextStyle,
                       ),
                       SizedBox(
                         height: 15.0,
@@ -58,16 +53,32 @@ class _InputInfoPageState extends State<InputInfoPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          MaleFemaleButton(),
-                          MaleFemaleButton(),
+                          IconNamedButton(
+                            buttonText: 'MALE',
+                            colour: kButtonMaleColour,
+                            icon: FontAwesomeIcons.mars,
+                            onPressed: () {
+                              print('apertou o botao de male!');
+                            },
+                          ),
+                          IconNamedButton(
+                            buttonText: 'FEMALE',
+                            colour: kButtonFemaleColour,
+                            icon: FontAwesomeIcons.venus,
+                            onPressed: () {
+                              print('apertou o botao de female!');
+                            },
+                          ),
                         ],
                       )
                     ],
                   ),
                   
                 ),
+              ),
+              Expanded(
+                child: Column(),
               )
-
             ],
           ),
         ),
@@ -76,42 +87,3 @@ class _InputInfoPageState extends State<InputInfoPage> {
   }
 }
 
-class MaleFemaleButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: () {
-        print('clicou no botao');
-      },
-      fillColor: Color(0xFF47C7F0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(50.0)
-      ),
-      constraints: BoxConstraints.tightFor(
-        width: 140.0,
-        height: 50.0
-      ),
-      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Icon(
-            FontAwesomeIcons.mars,
-            color: Colors.white,
-            size: 30.0,
-          ),
-          Text(
-            'FEMALE',
-            style: TextStyle(
-              fontSize: 18.0,
-              fontFamily: 'Poppins',
-              color: Colors.white
-            ),
-          )
-        ],
-      ),
-
-
-    );
-  }
-}
