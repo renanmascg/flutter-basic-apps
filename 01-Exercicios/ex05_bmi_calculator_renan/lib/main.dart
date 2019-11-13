@@ -1,4 +1,4 @@
-import 'package:ex05_bmi_calculator_renan/input_info_page.dart';
+import 'package:ex05_bmi_calculator_renan/pages/input_info_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(BMIApp());

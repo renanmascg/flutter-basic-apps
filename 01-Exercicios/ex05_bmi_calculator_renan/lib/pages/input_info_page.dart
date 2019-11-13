@@ -1,6 +1,8 @@
+import 'package:ex05_bmi_calculator_renan/components/bottom_button.dart';
 import 'package:ex05_bmi_calculator_renan/components/icon_named_button.dart';
 import 'package:ex05_bmi_calculator_renan/components/slider_custom.dart';
 import 'package:ex05_bmi_calculator_renan/constants.dart';
+import 'package:ex05_bmi_calculator_renan/pages/results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -167,29 +169,16 @@ class _InputInfoPageState extends State<InputInfoPage> {
                   ),
                 ),
               ),
-              GestureDetector(
+              BottomButton(
+                buttonText: 'CALCULATE',
                 onTap: () {
-                  print('Clicou para ir a outra pagina');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ResultPage()
+                    )
+                  );
                 },
-                child: Container(
-                  width: double.infinity,
-                  height: 80.0,
-                  color: Colors.white,
-                  padding: EdgeInsets.only(bottom: 15.0),
-                  child: Center(
-                    child: Text(
-                      'CALCULATE',
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        color: Color(0xFF465263),
-                        fontSize: 30.0,
-                        letterSpacing: 1.3,
-                        fontWeight: FontWeight.w500
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
               )
 
             ],
