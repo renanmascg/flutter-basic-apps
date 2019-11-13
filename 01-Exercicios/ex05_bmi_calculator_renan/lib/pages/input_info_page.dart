@@ -1,3 +1,4 @@
+import 'package:ex05_bmi_calculator_renan/bmi_calculator.dart';
 import 'package:ex05_bmi_calculator_renan/components/bottom_button.dart';
 import 'package:ex05_bmi_calculator_renan/components/icon_named_button.dart';
 import 'package:ex05_bmi_calculator_renan/components/slider_custom.dart';
@@ -172,10 +173,17 @@ class _InputInfoPageState extends State<InputInfoPage> {
               BottomButton(
                 buttonText: 'CALCULATE',
                 onTap: () {
+
+                  BMICalculator calc = BMICalculator(height: height, weight: weight);
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ResultPage()
+                      builder: (context) => ResultPage(
+                        result: calc.getResult(),
+                        message: calc.getInterpretation(),
+                        assetImage: calc.getImage(),
+                      )
                     )
                   );
                 },

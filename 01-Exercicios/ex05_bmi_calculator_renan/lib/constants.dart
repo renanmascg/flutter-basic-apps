@@ -25,7 +25,7 @@ const kCardTitleTextStyle = TextStyle(
 );
 
 const kResultTextStyle = TextStyle(
-  fontSize: 30.0,
+  fontSize: 25.0,
   fontFamily: 'Poppins',
   color: Colors.white,
   fontWeight: FontWeight.w500

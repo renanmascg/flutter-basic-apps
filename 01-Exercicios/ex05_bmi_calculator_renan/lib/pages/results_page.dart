@@ -2,10 +2,18 @@ import 'package:ex05_bmi_calculator_renan/components/bottom_button.dart';
 import 'package:ex05_bmi_calculator_renan/components/icon_named_button.dart';
 import 'package:ex05_bmi_calculator_renan/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ResultPage extends StatelessWidget {
+
+  ResultPage({ this.result, this.message, this.assetImage});
+
+  final String result;
+  final String message;
+  final AssetImage assetImage;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +43,7 @@ class ResultPage extends StatelessWidget {
                 flex: 1,
                 child: Center(
                   child: Text(
-                    'GREAT JOB!',
+                    result,
                     style: kResultTextStyle,
                   ),
                 )
@@ -43,7 +51,7 @@ class ResultPage extends StatelessWidget {
               Expanded(
                 flex: 3,
                 child: Image(
-                  image: AssetImage('images/bmi_cool.png'),
+                  image: assetImage,
                   width: 150,
                   height: 150,
                 )
@@ -51,7 +59,7 @@ class ResultPage extends StatelessWidget {
               Expanded(
                 child: Center(
                   child: Text(
-                    'YOUR BMI IS GREAT!',
+                    message,
                     style: kResultTextStyle,
                   ),
                 ),
