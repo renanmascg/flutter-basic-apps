@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // Button colors
 const Color kButtonMaleColour = Color(0xFF47C7F0);
 const Color kButtonFemaleColour = Color(0xFFF7B1AE);
+const Color kButtonNotSelected = Color(0xFFE0E0E0);
 
 // degradee color
 const Color kDegradeInitialColor = Color(0xFF58AEC6);

@@ -25,7 +25,7 @@ class IconNamedButton extends StatelessWidget {
       ),
       constraints: BoxConstraints.tightFor(
         width: 140.0,
-        height: 50.0
+        height: 45.0
       ),
       padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
       child: Row(

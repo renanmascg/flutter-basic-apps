@@ -1,7 +1,13 @@
 import 'package:ex05_bmi_calculator_renan/components/icon_named_button.dart';
+import 'package:ex05_bmi_calculator_renan/components/slider_custom.dart';
 import 'package:ex05_bmi_calculator_renan/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+enum Gender {
+  male,
+  female
+}
 
 class InputInfoPage extends StatefulWidget {
   @override
@@ -9,6 +15,12 @@ class InputInfoPage extends StatefulWidget {
 }
 
 class _InputInfoPageState extends State<InputInfoPage> {
+
+  Gender genderSelected;
+  int age = 20;
+  int height = 120;
+  int weight = 60;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +50,7 @@ class _InputInfoPageState extends State<InputInfoPage> {
               ),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.all(15.0),
+                  padding: EdgeInsets.symmetric(horizontal:40.0, vertical: 0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -51,22 +63,26 @@ class _InputInfoPageState extends State<InputInfoPage> {
                         height: 15.0,
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           IconNamedButton(
                             buttonText: 'MALE',
-                            colour: kButtonMaleColour,
+                            colour: genderSelected == Gender.male ? kButtonMaleColour : kButtonNotSelected, 
                             icon: FontAwesomeIcons.mars,
                             onPressed: () {
-                              print('apertou o botao de male!');
+                              setState(() {
+                                genderSelected = Gender.male;
+                              });
                             },
                           ),
                           IconNamedButton(
                             buttonText: 'FEMALE',
-                            colour: kButtonFemaleColour,
+                            colour: genderSelected == Gender.female ? kButtonFemaleColour : kButtonNotSelected,
                             icon: FontAwesomeIcons.venus,
                             onPressed: () {
-                              print('apertou o botao de female!');
+                              setState(() {
+                                genderSelected = Gender.female;
+                              });
                             },
                           ),
                         ],
@@ -77,8 +93,105 @@ class _InputInfoPageState extends State<InputInfoPage> {
                 ),
               ),
               Expanded(
-                child: Column(),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal:40.0, vertical: 0.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                          'AGE',
+                          style: kCardTitleTextStyle,
+                        ),
+                      SliderCustom(
+                        label: age.toString(),
+                        min: 0.0,
+                        max: 100.0,
+                        value: age.toDouble(),
+                        onChanged: (double newValue) {
+                          setState(() {
+                            age = newValue.toInt();
+                          });
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal:40.0, vertical: 0.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                          'HEIGHT',
+                          style: kCardTitleTextStyle,
+                        ),
+                      SliderCustom(
+                        label: height.toString(),
+                        min: 100.0,
+                        max: 220.0,
+                        value: height.toDouble(),
+                        onChanged: (double newValue) {
+                          setState(() {
+                            height = newValue.toInt();
+                          });
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal:40.0, vertical: 0.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                          'WEIGHT',
+                          style: kCardTitleTextStyle,
+                        ),
+                      SliderCustom(
+                        label: weight.toString(),
+                        min: 20.0,
+                        max: 130.0,
+                        value: weight.toDouble(),
+                        onChanged: (double newValue) {
+                          setState(() {
+                            weight = newValue.toInt();
+                          });
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  print('Clicou para ir a outra pagina');
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 80.0,
+                  color: Colors.white,
+                  padding: EdgeInsets.only(bottom: 15.0),
+                  child: Center(
+                    child: Text(
+                      'CALCULATE',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Color(0xFF465263),
+                        fontSize: 30.0,
+                        letterSpacing: 1.3,
+                        fontWeight: FontWeight.w500
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
               )
+
             ],
           ),
         ),
@@ -86,4 +199,3 @@ class _InputInfoPageState extends State<InputInfoPage> {
     );
   }
 }
-
