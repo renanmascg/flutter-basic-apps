@@ -2,6 +2,7 @@ import 'package:ex05_bmi_calculator_renan/components/bottom_button.dart';
 import 'package:ex05_bmi_calculator_renan/components/icon_named_button.dart';
 import 'package:ex05_bmi_calculator_renan/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ResultPage extends StatelessWidget {
@@ -69,7 +70,14 @@ class ResultPage extends StatelessWidget {
                       buttonText: 'Facebook',
                       icon: FontAwesomeIcons.facebookF,
                       onPress: () {
-                        
+                        Fluttertoast.showToast(
+                          msg: 'Irá compartilhar no Facebook!',
+                          toastLength: Toast.LENGTH_LONG,
+                          gravity: ToastGravity.TOP,
+                          backgroundColor: Colors.green[300],
+                          textColor: Colors.white,
+                          fontSize: 16.0
+                        );
                       },
                     ),
                     SizedBox(height: 10.0,),
@@ -77,7 +85,14 @@ class ResultPage extends StatelessWidget {
                       buttonText: 'Instagram',
                       icon: FontAwesomeIcons.instagram,
                       onPress: () {
-
+                        Fluttertoast.showToast(
+                          msg: 'Irá compartilhar no Instagram!',
+                          toastLength: Toast.LENGTH_LONG,
+                          gravity: ToastGravity.TOP,
+                          backgroundColor: Colors.green[300],
+                          textColor: Colors.white,
+                          fontSize: 16.0
+                        );
                       },
                     ),
                     SizedBox(height: 10.0,),
@@ -85,7 +100,14 @@ class ResultPage extends StatelessWidget {
                       buttonText: 'Twitter',
                       icon: FontAwesomeIcons.twitter,
                       onPress: () {
-
+                        Fluttertoast.showToast(
+                          msg: 'Irá compartilhar no twitter!',
+                          toastLength: Toast.LENGTH_LONG,
+                          gravity: ToastGravity.TOP,
+                          backgroundColor: Colors.green[300],
+                          textColor: Colors.white,
+                          fontSize: 16.0
+                        );
                       },
                     ),
                   ] ,
