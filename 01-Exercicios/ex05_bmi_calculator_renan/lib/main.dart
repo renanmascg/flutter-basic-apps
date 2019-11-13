@@ -9,13 +9,7 @@ class BMIApp extends StatelessWidget {
     return MaterialApp(
       home: InputInfoPage(),
       theme: ThemeData.light().copyWith(
-        primaryColor: Color(0xFF00D492),
-        textTheme: TextTheme(
-          body1: TextStyle(
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.w500
-          )
-        )
+        primaryColor: Color(0xFF58AEC6),
       ),
     );
   }
