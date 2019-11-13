@@ -23,3 +23,10 @@ const kCardTitleTextStyle = TextStyle(
   color: Colors.white,
   fontWeight: FontWeight.w500
 );
+
+const kResultTextStyle = TextStyle(
+  fontSize: 30.0,
+  fontFamily: 'Poppins',
+  color: Colors.white,
+  fontWeight: FontWeight.w500
+);
