@@ -1,4 +1,4 @@
-import 'package:bitcoin_ticker_flutter_app/coin_data.dart';
+import 'package:bitcoin_ticker_flutter_app/services/coin_data.dart';
 import 'package:flutter/material.dart';
 
 class PriceScreen extends StatefulWidget {
