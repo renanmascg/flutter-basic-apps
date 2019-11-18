@@ -1,3 +1,4 @@
+import 'package:clima_app_flutter/screens/city_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:clima_app_flutter/utilities/constants.dart';
 import 'package:clima_app_flutter/services/weather.dart';
@@ -36,9 +37,17 @@ class _LocationScreenState extends State<LocationScreen> {
         cityName = '';
         return;
       }
+
+      print(weatherData);
+
+      try {
+        double temp = weatherData['main']['temp'];
+        temperature = temp.toInt();
+
+      } catch(err) {
+        temperature = weatherData['main']['temp'];
+      }
       
-      double temp = weatherData['main']['temp'];
-      temperature = temp.toInt();
       weatherMessage = weather.getMessage(temperature);
       
       int condition = weatherData['weather'][0]['id'];
@@ -80,7 +89,17 @@ class _LocationScreenState extends State<LocationScreen> {
                     ),
                   ),
                   FlatButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      dynamic typedName = await Navigator.push(context, 
+                        MaterialPageRoute(
+                          builder: (context) => CityScreen()
+                        ));
+                      
+                      if(typedName != null) {
+                        dynamic weatherData = await weather.getCityWeather(typedName);
+                        updateUI(weatherData);
+                      }
+                    },
                     child: Icon(
                       Icons.location_city,
                       size: 50.0,
