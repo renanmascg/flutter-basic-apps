@@ -9,6 +9,26 @@ class PriceScreen extends StatefulWidget {
 class _PriceScreenState extends State<PriceScreen> {
 
   String selectedCurrency = 'USD';
+  String lastBTC = '?';
+
+  @override
+  void initState() {
+    super.initState();
+
+    getCryptoData();
+  }
+
+  void getCryptoData() async {
+
+    dynamic coinData = await CoinData().getCoinData();
+
+    double coinVal = coinData['last']; 
+
+    setState(() {
+      lastBTC = coinVal.toInt().toString();
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +52,7 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1 BTC = ? USD',
+                  '1 BTC = $lastBTC USD',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
