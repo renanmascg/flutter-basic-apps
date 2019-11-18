@@ -9,7 +9,8 @@ class PriceScreen extends StatefulWidget {
 class _PriceScreenState extends State<PriceScreen> {
 
   String selectedCurrency = 'USD';
-  String lastBTC = '?';
+  Map<String, String> cryptos = {};
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -19,14 +20,48 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   void getCryptoData() async {
+    
+    for(String crypto in cryptoList) {
+      try {
+        dynamic coinData = await CoinData().getCoinData(
+          crypto: crypto, 
+          currency: selectedCurrency
+        );
 
-    dynamic coinData = await CoinData().getCoinData(selectedCurrency);
+        double coinValue = coinData['last'];
 
-    double coinVal = coinData['last']; 
-
+        cryptos[crypto] = coinValue.toStringAsFixed(0);
+      
+      } catch (err) {
+        cryptos[crypto] = 'Error Consulting';
+      }
+      
+    }
     setState(() {
-      lastBTC = coinVal.toStringAsFixed(0);
+      isLoading = false;
     });
+
+  }
+
+  Column cryptoCards() {
+    
+    List<Widget> cryptoCards = [];
+
+    for (String crypto in cryptoList) {
+      cryptoCards.add(
+        CryptoCard(
+          cryptoName: crypto,
+          selectedCurrency: selectedCurrency,
+          lastValue: isLoading ? '?' : cryptos[crypto],
+        )
+      );
+    }
+
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: cryptoCards
+    );
 
   }
 
@@ -41,27 +76,7 @@ class _PriceScreenState extends State<PriceScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-            child: Card(
-              color: Colors.lightBlueAccent,
-              elevation: 5.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
-                child: Text(
-                  '1 BTC = $lastBTC $selectedCurrency',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          cryptoCards(),
           Container(
             height: 150.0,
             alignment: Alignment.center,
@@ -78,7 +93,7 @@ class _PriceScreenState extends State<PriceScreen> {
               onChanged: (value) {
                 setState(() {
                   selectedCurrency = value;
-                  lastBTC = '?';
+                  isLoading = true;
 
                   getCryptoData();
 
@@ -88,6 +103,43 @@ class _PriceScreenState extends State<PriceScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CryptoCard extends StatelessWidget {
+  const CryptoCard({
+    @required this.cryptoName,
+    @required this.lastValue,
+    @required this.selectedCurrency,
+  });
+
+  final String cryptoName;
+  final String lastValue;
+  final String selectedCurrency;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+      child: Card(
+        color: Colors.lightBlueAccent,
+        elevation: 5.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
+          child: Text(
+            '1 $cryptoName = $lastValue $selectedCurrency',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20.0,
+              color: Colors.white,
+            ),
+          ),
+        ),
       ),
     );
   }
