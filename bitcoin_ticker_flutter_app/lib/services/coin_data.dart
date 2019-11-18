@@ -34,9 +34,9 @@ const List<String> cryptoList = [
 
 class CoinData {
   
-  Future<dynamic> getCoinData() async {
+  Future<dynamic> getCoinData(String currency) async {
 
-    NetworkHelper networkHelper = NetworkHelper(url: '$baseURL/BTCUSD');
+    NetworkHelper networkHelper = NetworkHelper(url: '$baseURL/BTC$currency');
 
     dynamic cryptoData = await networkHelper.getData();
 
