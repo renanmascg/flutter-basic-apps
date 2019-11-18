@@ -1,3 +1,7 @@
+import 'package:bitcoin_ticker_flutter_app/services/network.dart';
+
+const String baseURL = 'https://apiv2.bitcoinaverage.com/indices/global/ticker';
+
 const List<String> currenciesList = [
   'AUD',
   'BRL',
@@ -30,4 +34,14 @@ const List<String> cryptoList = [
 
 class CoinData {
   
-}
+  Future<dynamic> getCoinData() async {
+
+    NetworkHelper networkHelper = NetworkHelper(url: '$baseURL/BTCUSD');
+
+    dynamic cryptoData = await networkHelper.getData();
+
+    return cryptoData;
+
+  }
+
+} 
