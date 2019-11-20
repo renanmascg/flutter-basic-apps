@@ -4,6 +4,7 @@ import 'package:flash_chat_app/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+
 class RegistrationScreen extends StatefulWidget {
 
   static const String id = 'registration_screen';
@@ -74,7 +75,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     password: password
                   );
                   if(newUser != null) {
-                    print(newUser.user);
                     Navigator.pushNamed(context, ChatScreen.id);
                   }
                 } catch (err) {
