@@ -4,9 +4,9 @@ import 'package:todoey_flutter_app/models/task.dart';
 
 class TasksList extends StatefulWidget {
 
-  List<Task> tasks;
+  final List<Task> tasks;
 
-  TasksList({@required this.tasks});
+  TasksList({ @required this.tasks });
 
   @override
   _TasksListState createState() => _TasksListState();

@@ -4,7 +4,6 @@ import 'package:todoey_flutter_app/widgets/tasks_list.dart';
 import 'package:todoey_flutter_app/models/task.dart';
 
 class TasksScreen extends StatefulWidget {
-
   @override
   _TasksScreenState createState() => _TasksScreenState();
 }
@@ -46,7 +45,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                 ),
                 Text(
-                  '12 tasks',
+                  '${tasks.length} tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.0
