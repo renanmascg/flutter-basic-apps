@@ -52,6 +52,7 @@ class TasksScreen extends StatelessWidget {
                     topRight: Radius.circular(20.0),
                   )
                 ),
+                child: TasksList(),
               ),
             )
         ],
@@ -62,6 +63,36 @@ class TasksScreen extends StatelessWidget {
           Icons.add,
           size: 40.0,
         ),
+      ),
+    );
+  }
+}
+
+class TasksList extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
+      children: <Widget>[
+        TaskTile(),
+        TaskTile(),
+        TaskTile(),
+      ],
+    );
+  }
+}
+
+class TaskTile extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      contentPadding: EdgeInsets.all(0),
+      title: Text('Buy Milk'),
+      trailing: Checkbox(
+        value: false,
+        onChanged: (bool checked) {},
       ),
     );
   }
