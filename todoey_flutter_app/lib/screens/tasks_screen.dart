@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoey_flutter_app/widgets/task_tile.dart';
 
 class TasksScreen extends StatelessWidget {
   @override
@@ -44,55 +45,26 @@ class TasksScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20.0),
-                    topRight: Radius.circular(20.0),
-                  )
-                ),
-                child: TasksList(),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20.0),
+                  topRight: Radius.circular(20.0),
+                )
               ),
+              child: TaskTile(),
+            ),
             )
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        onPressed: () {},
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(
           Icons.add,
-          size: 40.0,
         ),
-      ),
-    );
-  }
-}
-
-class TasksList extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
-      children: <Widget>[
-        TaskTile(),
-        TaskTile(),
-        TaskTile(),
-      ],
-    );
-  }
-}
-
-class TaskTile extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: EdgeInsets.all(0),
-      title: Text('Buy Milk'),
-      trailing: Checkbox(
-        value: false,
-        onChanged: (bool checked) {},
       ),
     );
   }
